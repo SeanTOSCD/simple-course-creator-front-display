@@ -2,7 +2,7 @@
 /**
  * Plugin Name: SCC - Front Display
  * Plugin URI: http://buildwpyourself.com/downloads/scc-front-display/
- * Description: On the blog home and other feeds, indicate that posts are part of a course.
+ * Description: On the blog home, archives, and search results, indicate that posts are part of a course.
  * Version: 1.0.0
  * Author: Sean Davis
  * Author URI: http://seandavis.co
