@@ -77,43 +77,61 @@ class SCC_Front_Display_Customizer {
 			'priority'	=> 201
 		) );
 		
+		// font weight
+		$wp_customize->add_setting( 'sccfd_font_weight', array( 'default' => 0 ) );
+		$wp_customize->add_control( 'sccfd_font_weight', array(
+			'label'		=> __( 'Front Display Bold Font', 'scc_front_display' ),
+			'section'	=> $sccfd_customizer,
+			'type'      => 'checkbox',
+			'priority'	=> 202
+		) );
+		
 		// font color
 		$colors[] = array(
 			'slug'		=>'sccfd_text_color', 
 			'label'		=> __( 'Front Display Text Color', 'scc_front_display' ),
-			'priority'	=> 202
+			'priority'	=> 203
 		);
 		
 		// background color
 		$colors[] = array(
 			'slug'		=>'sccfd_background', 
 			'label'		=> __( 'Front Display Background Color', 'scc_front_display' ),
-			'priority'	=> 203
+			'priority'	=> 204
 		);
 
-		// border pixels top/bottom
-		$wp_customize->add_setting( 'sccfd_border_top_bottom', array( 'default' => '' ) );		
-		$wp_customize->add_control( 'sccfd_border_top_bottom', array(
-		    'label' 	=> __( 'Front Display Border Width (Top/Bottom)', 'scc_front_display' ),
+		// padding top/bottom
+		$wp_customize->add_setting( 'sccfd_padding_top_bottom', array( 'default' => '' ) );		
+		$wp_customize->add_control( 'sccfd_padding_top_bottom', array(
+		    'label' 	=> __( 'Front Display Padding (Top/Bottom)', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
-			'settings' 	=> 'sccfd_border_top_bottom',
-			'priority'	=> 85,
+			'settings' 	=> 'sccfd_padding_top_bottom',
+			'priority'	=> 205
 		) );
 
-		// border pixels left/right
-		$wp_customize->add_setting( 'sccfd_border_left_right', array( 'default' => '' ) );		
-		$wp_customize->add_control( 'sccfd_border_left_right', array(
-		    'label' 	=> __( 'Front Display Border Width (Left/Right)', 'scc_front_display' ),
+		// padding left/right
+		$wp_customize->add_setting( 'sccfd_padding_left_right', array( 'default' => '' ) );		
+		$wp_customize->add_control( 'sccfd_padding_left_right', array(
+		    'label' 	=> __( 'Front Display Padding (Left/Right)', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
-			'settings' 	=> 'sccfd_border_left_right',
-			'priority'	=> 204
+			'settings' 	=> 'sccfd_padding_left_right',
+			'priority'	=> 206
+		) );
+
+		// border
+		$wp_customize->add_setting( 'sccfd_border', array( 'default' => '' ) );		
+		$wp_customize->add_control( 'sccfd_border', array(
+		    'label' 	=> __( 'Front Display Border Width', 'scc_front_display' ),
+		    'section' 	=> $sccfd_customizer,
+			'settings' 	=> 'sccfd_border',
+			'priority'	=> 207
 		) );
 		
 		// border color
 		$colors[] = array(
 			'slug'		=>'sccfd_border_color', 
 			'label'		=> __( 'Front Display Border Color', 'scc_front_display' ),
-			'priority'	=> 205
+			'priority'	=> 208
 		);
 
 		// border radius
@@ -122,17 +140,7 @@ class SCC_Front_Display_Customizer {
 		    'label' 	=> __( 'Front Display Border Radius', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
 			'settings' 	=> 'sccfd_border_radius',
-			'priority'	=> 206
-			'priority'	=> 207
-		) );
-
-		// padding
-		$wp_customize->add_setting( 'sccfd_padding', array( 'default' => '' ) );		
-		$wp_customize->add_control( 'sccfd_padding', array(
-		    'label' 	=> __( 'Front Display Padding', 'scc_front_display' ),
-		    'section' 	=> $sccfd_customizer,
-			'settings' 	=> 'sccfd_padding',
-			'priority'	=> 208
+			'priority'	=> 209
 		) );
 
 		// margin bottom
@@ -141,7 +149,7 @@ class SCC_Front_Display_Customizer {
 		    'label' 	=> __( 'Front Display Bottom Margin', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
 			'settings' 	=> 'sccfd_margin_bottom',
-			'priority'	=> 209
+			'priority'	=> 210
 		) );
 		
 		// build settings from $colors array
@@ -171,19 +179,18 @@ class SCC_Front_Display_Customizer {
 	public function customizer_styles() { ?>
 		<style type="text/css">
 			#customize-control-sccfd_border input[type="text"],
-			#customize-control-sccfd_border_top_bottom input[type="text"],
-			#customize-control-sccfd_border_left_right input[type="text"],
 			#customize-control-sccfd_border_radius input[type="text"],
-			#customize-control-sccfd_padding input[type="text"],
+			#customize-control-sccfd_padding_top_bottom input[type="text"],
+			#customize-control-sccfd_padding_left_right input[type="text"],
 			#customize-control-sccfd_font_size input[type="text"],
 			#customize-control-sccfd_margin_bottom input[type="text"] { width: 50px; }
-			#customize-control-sccfd_border input[type="text"]:after,
-			#customize-control-sccfd_border_top_bottom input[type="text"]:after,
-			#customize-control-sccfd_border_left_right input[type="text"]:after,
-			#customize-control-sccfd_border_radius input[type="text"]:after,
-			#customize-control-sccfd_padding input[type="text"]:after,
-			#customize-control-sccfd_font_size input[type="text"]:after,
-			#customize-control-sccfd_margin_bottom input[type="text"]:after { content: "px"; }
+			#customize-control-sccfd_font_weight { display: inline-block; margin-top: 20px; }
+			#customize-control-sccfd_border label:after,
+			#customize-control-sccfd_border_radius label:after,
+			#customize-control-sccfd_padding_top_bottom label:after,
+			#customize-control-sccfd_padding_left_right label:after,
+			#customize-control-sccfd_font_size label:after,
+			#customize-control-sccfd_margin_bottom label:after { content: "px"; }
 		</style>
 	<?php }
 	
@@ -197,12 +204,13 @@ class SCC_Front_Display_Customizer {
 	 */
 	public function head_styles() {
 		$sccfd_font_size = get_theme_mod( 'sccfd_font_size' );
+		$sccfd_font_weight = get_theme_mod( 'sccfd_font_weight' );
 		$sccfd_background = get_option( 'sccfd_background' );
-		$sccfd_border_top_bottom = get_theme_mod( 'sccfd_border_top_bottom' );
-		$sccfd_border_left_right = get_theme_mod( 'sccfd_border_left_right' );
+		$sccfd_border = get_theme_mod( 'sccfd_border' );
 		$sccfd_border_color = get_option( 'sccfd_border_color' );
 		$sccfd_border_radius = get_theme_mod( 'sccfd_border_radius' );
-		$sccfd_padding = get_theme_mod( 'sccfd_padding' );
+		$sccfd_padding_top_bottom = get_theme_mod( 'sccfd_padding_top_bottom' );
+		$sccfd_padding_left_right = get_theme_mod( 'sccfd_padding_left_right' );
 		$sccfd_text_color = get_option( 'sccfd_text_color' );
 		$sccfd_margin_bottom = get_theme_mod( 'sccfd_margin_bottom' );
 
@@ -214,6 +222,11 @@ class SCC_Front_Display_Customizer {
 				// font size
 				if ( $sccfd_font_size ) :
 					echo "font-size:" . intval( $sccfd_font_size ) . "px;";	
+				endif;
+				
+				// font weight
+				if ( $sccfd_font_weight == 1 ) :
+					echo "font-weight:bold;";
 				endif;
 					
 				// background
@@ -232,15 +245,15 @@ class SCC_Front_Display_Customizer {
 				endif;
 
 				// padding top/bottom
-				if ( $sccfd_border_top_bottom != '' ) :
-					echo "padding-top:" . intval( $sccfd_border_top_bottom ) . "px;";
-					echo "padding-bottom:" . intval( $sccfd_border_top_bottom ) . "px;";
+				if ( $sccfd_padding_top_bottom != '' ) :
+					echo "padding-top:" . intval( $sccfd_padding_top_bottom ) . "px;";
+					echo "padding-bottom:" . intval( $sccfd_padding_top_bottom ) . "px;";
 				endif;
 
 				// padding left/right
-				if ( $sccfd_border_left_right != '' ) :
-					echo "padding-right:" . intval( $sccfd_border_left_right ) . "px;";
-					echo "padding-left:" . intval( $sccfd_border_left_right ) . "px;";
+				if ( $sccfd_padding_left_right != '' ) :
+					echo "padding-right:" . intval( $sccfd_padding_left_right ) . "px;";
+					echo "padding-left:" . intval( $sccfd_padding_left_right ) . "px;";
 				endif;
 				
 				// course indicator text color
@@ -249,7 +262,7 @@ class SCC_Front_Display_Customizer {
 				endif;
 
 				// margin bottom
-				if ( $sccfd_padding != '' ) :
+				if ( $sccfd_margin_bottom != '' ) :
 					echo "margin-bottom:" . intval( $sccfd_margin_bottom ) . "px;";
 				endif;
 		
