@@ -27,8 +27,8 @@ class SCCFD_Display_Course {
 		global $post;
 	
 		// set leading text and filter it
-		$course_leading_text = apply_filters( 'course_leading_text', __( 'Course:', 'scc_front_display' ) );
-		$course_trailing_text = apply_filters( 'course_trailing_text', '' );
+		$course_leading_text = apply_filters( 'course_leading_text', __( 'This post is part of the', 'scc_front_display' ) );
+		$course_trailing_text = apply_filters( 'course_trailing_text', 'course.' );
 		
 		// what's the name of the course?
 		$course_info = get_the_term_list( $post->ID, 'course', $course_leading_text . ' ', '', ' ' . $course_trailing_text );
