@@ -74,21 +74,21 @@ class SCC_Front_Display_Customizer {
 		    'label' 	=> __( 'Front Display Font Size', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
 			'settings' 	=> 'sccfd_font_size',
-			'priority'	=> 82,
+			'priority'	=> 201
 		) );
 		
 		// font color
 		$colors[] = array(
 			'slug'		=>'sccfd_text_color', 
 			'label'		=> __( 'Front Display Text Color', 'scc_front_display' ),
-			'priority'	=> 83
+			'priority'	=> 202
 		);
 		
 		// background color
 		$colors[] = array(
 			'slug'		=>'sccfd_background', 
 			'label'		=> __( 'Front Display Background Color', 'scc_front_display' ),
-			'priority'	=> 84
+			'priority'	=> 203
 		);
 
 		// border pixels top/bottom
@@ -106,14 +106,14 @@ class SCC_Front_Display_Customizer {
 		    'label' 	=> __( 'Front Display Border Width (Left/Right)', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
 			'settings' 	=> 'sccfd_border_left_right',
-			'priority'	=> 86,
+			'priority'	=> 204
 		) );
 		
 		// border color
 		$colors[] = array(
 			'slug'		=>'sccfd_border_color', 
 			'label'		=> __( 'Front Display Border Color', 'scc_front_display' ),
-			'priority'	=> 87
+			'priority'	=> 205
 		);
 
 		// border radius
@@ -122,7 +122,8 @@ class SCC_Front_Display_Customizer {
 		    'label' 	=> __( 'Front Display Border Radius', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
 			'settings' 	=> 'sccfd_border_radius',
-			'priority'	=> 88,
+			'priority'	=> 206
+			'priority'	=> 207
 		) );
 
 		// padding
@@ -131,7 +132,7 @@ class SCC_Front_Display_Customizer {
 		    'label' 	=> __( 'Front Display Padding', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
 			'settings' 	=> 'sccfd_padding',
-			'priority'	=> 89,
+			'priority'	=> 208
 		) );
 
 		// margin bottom
@@ -140,7 +141,7 @@ class SCC_Front_Display_Customizer {
 		    'label' 	=> __( 'Front Display Bottom Margin', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
 			'settings' 	=> 'sccfd_margin_bottom',
-			'priority'	=> 89,
+			'priority'	=> 209
 		) );
 		
 		// build settings from $colors array
