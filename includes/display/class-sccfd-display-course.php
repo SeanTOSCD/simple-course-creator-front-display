@@ -24,9 +24,10 @@ class SCCFD_Display_Course {
 	 * add front display course indicator
 	 */
 	public function scc_front_display( $content ) {
+		global $post;
 	
 		// set leading text and filter it
-		$course_leading_text = apply_filters( 'course_leading_text', __( 'From course:', 'scc_front_display' ) );
+		$course_leading_text = apply_filters( 'course_leading_text', __( 'Course:', 'scc_front_display' ) );
 		$course_trailing_text = apply_filters( 'course_trailing_text', '' );
 		
 		// what's the name of the course?
@@ -37,9 +38,8 @@ class SCCFD_Display_Course {
 		
 		// only display the course output if it exists and it's the 
 		// blog home, archive, or search results
-		if ( is_home() || is_archive() || is_search() && ! empty( $course_info ) ) :
-			global $post;
-			echo '<span class="scc-front-display">' . $course_info . '</span>';
+		if ( is_home() || is_archive() || is_search() ) :
+			echo $course_info != '' ? '<span class="scc-front-display">' . $course_info . '</span>' : '';
 		endif;
 			
 		return $content;
