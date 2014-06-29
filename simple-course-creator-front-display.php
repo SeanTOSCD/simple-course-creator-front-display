@@ -66,7 +66,7 @@ if ( is_plugin_active( 'simple-course-creator/simple-course-creator.php' ) ) :
 		 * load SCC Front Display text domain
 		 */
 		public function load_textdomain() {
-			load_plugin_textdomain( 'scc_front_display', false, SCCFD_DIR . "languages" );
+			load_plugin_textdomain( 'scc_front_display', false, SCCFD_DIR . 'languages/' );
 		}
 
 
