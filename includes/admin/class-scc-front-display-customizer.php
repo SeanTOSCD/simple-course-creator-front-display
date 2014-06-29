@@ -62,14 +62,17 @@ class SCC_Front_Display_Customizer {
 		
 			$wp_customize->add_section( 'scc_front_display_customizer', array(
 		    	'title'       	=> 'SCC Front Display ' . __( 'Design', 'scc_front_display' ),
-				'description' 	=> __( 'Use this section to style the course indicator output. For complete SCC output style options, you should install the ', 'scc_front_display' ) . '<a href="http://buildwpyourself.com/downloads/scc-customizer/" target="_blank">' . 'SCC Customizer' . __( ' plugin', 'scc_front_display' ) . '</a>.',
+				'description' 	=> sprintf( __( 'Use this section to style the course indicator output. For complete SCC output style options, you should install the %s plugin.', 'scc_front_display' ), '<a href="http://buildwpyourself.com/downloads/scc-customizer/" target="_blank">SCC Customizer</a>' ),
 				'priority'   	=> 100,
 			) );
 			
 		}
 
 		// font size
-		$wp_customize->add_setting( 'sccfd_font_size', array( 'default' => '' ) );		
+		$wp_customize->add_setting( 'sccfd_font_size', array(
+			'default'			=> '',
+			'sanitize_callback'	=> array( $this, 'scc_front_display_sanitize_integer' ),
+		) );		
 		$wp_customize->add_control( 'sccfd_font_size', array(
 		    'label' 	=> __( 'Front Display Font Size', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
@@ -78,7 +81,10 @@ class SCC_Front_Display_Customizer {
 		) );
 		
 		// font weight
-		$wp_customize->add_setting( 'sccfd_font_weight', array( 'default' => 0 ) );
+		$wp_customize->add_setting( 'sccfd_font_weight', array(
+			'default'			=> 0,
+			'sanitize_callback'	=> array( $this, 'scc_front_display_sanitize_checkbox' ),
+		) );
 		$wp_customize->add_control( 'sccfd_font_weight', array(
 			'label'		=> __( 'Front Display Bold Font', 'scc_front_display' ),
 			'section'	=> $sccfd_customizer,
@@ -101,7 +107,10 @@ class SCC_Front_Display_Customizer {
 		);
 
 		// padding top/bottom
-		$wp_customize->add_setting( 'sccfd_padding_top_bottom', array( 'default' => '' ) );		
+		$wp_customize->add_setting( 'sccfd_padding_top_bottom', array(
+			'default'			=> '',
+			'sanitize_callback'	=> array( $this, 'scc_front_display_sanitize_integer' ),
+		) );		
 		$wp_customize->add_control( 'sccfd_padding_top_bottom', array(
 		    'label' 	=> __( 'Front Display Padding (Top/Bottom)', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
@@ -110,7 +119,10 @@ class SCC_Front_Display_Customizer {
 		) );
 
 		// padding left/right
-		$wp_customize->add_setting( 'sccfd_padding_left_right', array( 'default' => '' ) );		
+		$wp_customize->add_setting( 'sccfd_padding_left_right', array(
+			'default'			=> '',
+			'sanitize_callback'	=> array( $this, 'scc_front_display_sanitize_integer' ),
+		) );		
 		$wp_customize->add_control( 'sccfd_padding_left_right', array(
 		    'label' 	=> __( 'Front Display Padding (Left/Right)', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
@@ -119,7 +131,10 @@ class SCC_Front_Display_Customizer {
 		) );
 
 		// border
-		$wp_customize->add_setting( 'sccfd_border', array( 'default' => '' ) );		
+		$wp_customize->add_setting( 'sccfd_border', array(
+			'default'			=> '',
+			'sanitize_callback'	=> array( $this, 'scc_front_display_sanitize_integer' ),
+		) );	
 		$wp_customize->add_control( 'sccfd_border', array(
 		    'label' 	=> __( 'Front Display Border Width', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
@@ -135,7 +150,10 @@ class SCC_Front_Display_Customizer {
 		);
 
 		// border radius
-		$wp_customize->add_setting( 'sccfd_border_radius', array( 'default' => '' ) );		
+		$wp_customize->add_setting( 'sccfd_border_radius', array(
+			'default'			=> '',
+			'sanitize_callback'	=> array( $this, 'scc_front_display_sanitize_integer' ),
+		) );		
 		$wp_customize->add_control( 'sccfd_border_radius', array(
 		    'label' 	=> __( 'Front Display Border Radius', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
@@ -144,7 +162,10 @@ class SCC_Front_Display_Customizer {
 		) );
 
 		// margin bottom
-		$wp_customize->add_setting( 'sccfd_margin_bottom', array( 'default' => '' ) );		
+		$wp_customize->add_setting( 'sccfd_margin_bottom', array(
+			'default'			=> '',
+			'sanitize_callback'	=> array( $this, 'scc_front_display_sanitize_integer' ),
+		) );	
 		$wp_customize->add_control( 'sccfd_margin_bottom', array(
 		    'label' 	=> __( 'Front Display Bottom Margin', 'scc_front_display' ),
 		    'section' 	=> $sccfd_customizer,
@@ -159,7 +180,7 @@ class SCC_Front_Display_Customizer {
 			$wp_customize->add_setting( $color['slug'], array(
 				'default'		=> $color['default'],
 				'type'			=> 'option', 
-				'capability'	=>  'edit_theme_options'
+				'capability'	=> 'edit_theme_options'
 			) );
 	
 			// customizer controls
@@ -170,6 +191,47 @@ class SCC_Front_Display_Customizer {
 				'priority'	=> $color['priority']
 			) ) );
 		}
+	}
+
+
+	/** 
+	 * sanitize checkbox options
+	 */
+	function scc_front_display_sanitize_checkbox( $input ) {
+	    if ( 1 == $input ) :
+	        return 1;
+	    else :
+	        return 0;
+	    endif;
+	}
+
+
+	/**
+	 * sanitize integer input
+	 */
+	public function scc_front_display_sanitize_integer( $input ) {
+		if ( '' == $input ) :
+			return '';
+		endif;
+		
+		return absint( $input );
+	}
+
+
+	/**
+	 * sanitize hex colors
+	 */
+	public function scc_front_display_sanitize_hex_color( $color ) {
+		if ( '' === $color ) :
+			return '';
+	    endif;
+	
+		// 3 or 6 hex digits, or the empty string.
+		if ( preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) :
+			return $color;
+	    endif;
+	
+		return null;
 	}
 
 
@@ -203,16 +265,16 @@ class SCC_Front_Display_Customizer {
 	 * hook. If not, create a new one <style> section through wp_head().
 	 */
 	public function head_styles() {
-		$sccfd_font_size = get_theme_mod( 'sccfd_font_size' );
-		$sccfd_font_weight = get_theme_mod( 'sccfd_font_weight' );
-		$sccfd_background = get_option( 'sccfd_background' );
-		$sccfd_border = get_theme_mod( 'sccfd_border' );
-		$sccfd_border_color = get_option( 'sccfd_border_color' );
-		$sccfd_border_radius = get_theme_mod( 'sccfd_border_radius' );
-		$sccfd_padding_top_bottom = get_theme_mod( 'sccfd_padding_top_bottom' );
-		$sccfd_padding_left_right = get_theme_mod( 'sccfd_padding_left_right' );
-		$sccfd_text_color = get_option( 'sccfd_text_color' );
-		$sccfd_margin_bottom = get_theme_mod( 'sccfd_margin_bottom' );
+		$sccfd_font_size			= get_theme_mod( 'sccfd_font_size' );
+		$sccfd_font_weight			= get_theme_mod( 'sccfd_font_weight' );
+		$sccfd_background			= get_option( 'sccfd_background' );
+		$sccfd_border				= get_theme_mod( 'sccfd_border' );
+		$sccfd_border_color			= get_option( 'sccfd_border_color' );
+		$sccfd_border_radius		= get_theme_mod( 'sccfd_border_radius' );
+		$sccfd_padding_top_bottom	= get_theme_mod( 'sccfd_padding_top_bottom' );
+		$sccfd_padding_left_right	= get_theme_mod( 'sccfd_padding_left_right' );
+		$sccfd_text_color			= get_option( 'sccfd_text_color' );
+		$sccfd_margin_bottom		= get_theme_mod( 'sccfd_margin_bottom' );
 
 		echo ! $this->sccc_active ? '<style type="text/css">' : ''; // do we need a new <style> tag?
 			echo '.scc-front-display{';
@@ -221,49 +283,49 @@ class SCC_Front_Display_Customizer {
 					
 				// font size
 				if ( $sccfd_font_size ) :
-					echo "font-size:" . intval( $sccfd_font_size ) . "px;";	
+					echo 'font-size:' . intval( $sccfd_font_size ) . 'px;';
 				endif;
 				
 				// font weight
-				if ( $sccfd_font_weight == 1 ) :
-					echo "font-weight:bold;";
+				if ( 1 == $sccfd_font_weight ) :
+					echo 'font-weight:bold;';
 				endif;
 					
 				// background
 				if ( $sccfd_background ) :
-					echo "background:{$sccfd_background};";	
+					echo 'background:' . $this->scc_front_display_sanitize_hex_color( $sccfd_background ) . ';';
 				endif;
 					
 				// border width
 				if ( $sccfd_border != '' ) :
-					echo "border:" . intval( $sccfd_border ) . "px solid {$sccfd_border_color};";		
+					echo 'border:' . intval( $sccfd_border ) . 'px solid ' . $this->scc_front_display_sanitize_hex_color( $sccfd_border_color ) . ';';
 				endif;
 
 				// border radius
 				if ( $sccfd_border_radius != '' ) :
-					echo "border-radius:" . intval( $sccfd_border_radius ) . "px;";
+					echo 'border-radius:' . intval( $sccfd_border_radius ) . 'px;';
 				endif;
 
 				// padding top/bottom
 				if ( $sccfd_padding_top_bottom != '' ) :
-					echo "padding-top:" . intval( $sccfd_padding_top_bottom ) . "px;";
-					echo "padding-bottom:" . intval( $sccfd_padding_top_bottom ) . "px;";
+					echo 'padding-top:' . intval( $sccfd_padding_top_bottom ) . 'px;';
+					echo 'padding-bottom:' . intval( $sccfd_padding_top_bottom ) . 'px;';
 				endif;
 
 				// padding left/right
 				if ( $sccfd_padding_left_right != '' ) :
-					echo "padding-right:" . intval( $sccfd_padding_left_right ) . "px;";
-					echo "padding-left:" . intval( $sccfd_padding_left_right ) . "px;";
+					echo 'padding-right:' . intval( $sccfd_padding_left_right ) . 'px;';
+					echo 'padding-left:' . intval( $sccfd_padding_left_right ) . 'px;';
 				endif;
 				
 				// course indicator text color
 				if ( $sccfd_text_color ) :
-					echo "color:{$sccfd_text_color};";		
+					echo 'color:' . $this->scc_front_display_sanitize_hex_color( $sccfd_text_color ) . ';';		
 				endif;
 
 				// margin bottom
 				if ( $sccfd_margin_bottom != '' ) :
-					echo "margin-bottom:" . intval( $sccfd_margin_bottom ) . "px;";
+					echo 'margin-bottom:' . intval( $sccfd_margin_bottom ) . 'px;';
 				endif;
 		
 			echo '}';			
