@@ -3,12 +3,12 @@
  * Plugin Name: SCC - Front Display
  * Plugin URI: http://buildwpyourself.com/downloads/scc-front-display/
  * Description: On the blog home, archives, and search results, indicate that posts are part of a course.
- * Version: 1.0.0
+ * Version: 1.0.2
  * Author: Sean Davis
  * Author URI: http://seandavis.co
  * License: GPL2
  * Requires at least: 3.8
- * Tested up to: 3.9
+ * Tested up to: 3.9.1
  * Text Domain: scc_front_display
  * Domain Path: /languages/
  * 

@@ -1,10 +1,10 @@
 === Simple Course Creator Front Display ===
 Contributors: sdavis2702
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=52HQDSEUA542S
-Tags: customizer, series, course, lesson, taxonomy
+Tags: customizer, series, course, lesson, taxonomy, sdavis2702
 Requires at least: 3.8
 Tested up to: 3.9
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,6 +44,12 @@ The Front Display customizer options will be merged with SCC Customizer.
 2. front display output
 
 == Changelog ==
+
+= 1.0.2 =
+* improved: user input sanitization
+
+= 1.0.1 =
+* fix: languages directory path
 
 = 1.0.0 =
 * first stable version
