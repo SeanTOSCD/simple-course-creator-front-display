@@ -44,19 +44,19 @@ if ( is_plugin_active( 'simple-course-creator/simple-course-creator.php' ) ) :
 	 * @since 1.0.0
 	 */
 	class Simple_Course_Creator_Front_Display {
-	
-			
+
+
 		/**
 		 * constructor for Simple_Course_Creator_Front_Display class
 		 */
 		public function __construct() {
-			
+
 			// define plugin directory
 			define( 'SCCFD_DIR', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 			// load text domain
 			add_action( 'init', array( $this, 'load_textdomain' ) );
-	
+
 			// require additional plugin files
 			$this->includes();
 		}

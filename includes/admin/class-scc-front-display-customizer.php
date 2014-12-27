@@ -19,27 +19,27 @@ if ( ! defined( 'ABSPATH' ) ) exit; // No accessing this file directly
 
 class SCC_Front_Display_Customizer {
 
-		
+
 	/**
 	 * check for Simple Course Creator Customizer plugin
 	 */
 	private $sccc_active;
 
-		
+
 	/**
 	 * constructor for SCC_Front_Display_Customizer class
 	 */
 	public function __construct() {
-	
+
 		// is Simple Course Creator Customizer active?
 		$this->sccc_active = class_exists( 'Simple_Course_Creator_Customizer' );
-	
+
 		// load customizer functionality
 		add_action( 'customize_register', array( $this, 'settings' ) );
 
 		// customizer styles
 		add_action( 'customize_controls_print_styles', array( $this, 'customizer_styles' ) );
-		
+
 		// If Simple Course Creator Customizer is installed, hook into
 		// its <style> section of the head. If not, go for wp_head(). 
 		$scc_styles_loc = $this->sccc_active ? 'scc_add_to_styles' : 'wp_head';
@@ -51,21 +51,21 @@ class SCC_Front_Display_Customizer {
 	 * create customizer settings
 	 */
 	public function settings( $wp_customize ) {
-		
+
 		// color customization options
 		$colors = array();
-		
+
 		// which section do we use? well... what plugins are installed?
 		$sccfd_customizer = $this->sccc_active ? 'scc_customizer' : 'scc_front_display_customizer';
-		
+
 		if ( ! $this->sccc_active ) {
-		
+
 			$wp_customize->add_section( 'scc_front_display_customizer', array(
 		    	'title'       	=> 'SCC Front Display ' . __( 'Design', 'scc_front_display' ),
 				'description' 	=> sprintf( __( 'Use this section to style the course indicator output. For complete SCC output style options, you should install the %s plugin.', 'scc_front_display' ), '<a href="http://buildwpyourself.com/downloads/scc-customizer/" target="_blank">SCC Customizer</a>' ),
 				'priority'   	=> 100,
 			) );
-			
+
 		}
 
 		// font size
@@ -79,7 +79,7 @@ class SCC_Front_Display_Customizer {
 			'settings' 	=> 'sccfd_font_size',
 			'priority'	=> 201
 		) );
-		
+
 		// font weight
 		$wp_customize->add_setting( 'sccfd_font_weight', array(
 			'default'			=> 0,
@@ -91,14 +91,14 @@ class SCC_Front_Display_Customizer {
 			'type'      => 'checkbox',
 			'priority'	=> 202
 		) );
-		
+
 		// font color
 		$colors[] = array(
 			'slug'		=>'sccfd_text_color', 
 			'label'		=> __( 'Front Display Text Color', 'scc_front_display' ),
 			'priority'	=> 203
 		);
-		
+
 		// background color
 		$colors[] = array(
 			'slug'		=>'sccfd_background', 
@@ -141,7 +141,7 @@ class SCC_Front_Display_Customizer {
 			'settings' 	=> 'sccfd_border',
 			'priority'	=> 207
 		) );
-		
+
 		// border color
 		$colors[] = array(
 			'slug'		=>'sccfd_border_color', 
@@ -172,17 +172,17 @@ class SCC_Front_Display_Customizer {
 			'settings' 	=> 'sccfd_margin_bottom',
 			'priority'	=> 210
 		) );
-		
+
 		// build settings from $colors array
 		foreach( $colors as $color ) {
-	
+
 			// customizer settings
 			$wp_customize->add_setting( $color['slug'], array(
 				'default'		=> $color['default'],
 				'type'			=> 'option', 
 				'capability'	=> 'edit_theme_options'
 			) );
-	
+
 			// customizer controls
 			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $color['slug'], array(
 				'label'		=> $color['label'], 
@@ -225,12 +225,12 @@ class SCC_Front_Display_Customizer {
 		if ( '' === $color ) :
 			return '';
 	    endif;
-	
+
 		// 3 or 6 hex digits, or the empty string.
 		if ( preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) :
 			return $color;
 	    endif;
-	
+
 		return null;
 	}
 
@@ -255,8 +255,8 @@ class SCC_Front_Display_Customizer {
 			#customize-control-sccfd_margin_bottom label:after { content: "px"; }
 		</style>
 	<?php }
-	
-	
+
+
 	/**
 	 * add customizer styles to <head>
 	 *
@@ -278,24 +278,24 @@ class SCC_Front_Display_Customizer {
 
 		echo ! $this->sccc_active ? '<style type="text/css">' : ''; // do we need a new <style> tag?
 			echo '.scc-front-display{';
-			
+
 				echo 'display: inline-block;';
-					
+
 				// font size
 				if ( $sccfd_font_size ) :
 					echo 'font-size:' . intval( $sccfd_font_size ) . 'px;';
 				endif;
-				
+
 				// font weight
 				if ( 1 == $sccfd_font_weight ) :
 					echo 'font-weight:bold;';
 				endif;
-					
+
 				// background
 				if ( $sccfd_background ) :
 					echo 'background:' . $this->scc_front_display_sanitize_hex_color( $sccfd_background ) . ';';
 				endif;
-					
+
 				// border width
 				if ( $sccfd_border != '' ) :
 					echo 'border:' . intval( $sccfd_border ) . 'px solid ' . $this->scc_front_display_sanitize_hex_color( $sccfd_border_color ) . ';';
@@ -317,7 +317,7 @@ class SCC_Front_Display_Customizer {
 					echo 'padding-right:' . intval( $sccfd_padding_left_right ) . 'px;';
 					echo 'padding-left:' . intval( $sccfd_padding_left_right ) . 'px;';
 				endif;
-				
+
 				// course indicator text color
 				if ( $sccfd_text_color ) :
 					echo 'color:' . $this->scc_front_display_sanitize_hex_color( $sccfd_text_color ) . ';';		
@@ -327,7 +327,7 @@ class SCC_Front_Display_Customizer {
 				if ( $sccfd_margin_bottom != '' ) :
 					echo 'margin-bottom:' . intval( $sccfd_margin_bottom ) . 'px;';
 				endif;
-		
+
 			echo '}';			
 		echo ! $this->sccc_active ? '</style>' : '';
 	}
