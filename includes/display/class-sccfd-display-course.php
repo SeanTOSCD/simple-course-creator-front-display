@@ -36,10 +36,10 @@ class SCCFD_Display_Course {
 		// don't link to the course's archive page... just display its name
 		$course_info = strip_tags( $course_info );
 
-		// only display the course output if it exists and it's the 
+		// only display the course output if it exists and it's the
 		// blog home, archive, or search results
-		if ( is_home() || is_archive() || is_search() ) :
-			echo $course_info != '' ? '<span class="scc-front-display">' . $course_info . '</span>' : '';
+		if ( is_home() || is_archive() || is_search() && '' != $course_info ) :
+			echo '<span class="scc-front-display">' . $course_info . '</span>';
 		endif;
 
 		return $content;

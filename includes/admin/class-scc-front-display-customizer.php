@@ -41,13 +41,13 @@ class SCC_Front_Display_Customizer {
 		add_action( 'customize_controls_print_styles', array( $this, 'customizer_styles' ) );
 
 		// If Simple Course Creator Customizer is installed, hook into
-		// its <style> section of the head. If not, go for wp_head(). 
+		// its <style> section of the head. If not, go for wp_head().
 		$scc_styles_loc = $this->sccc_active ? 'scc_add_to_styles' : 'wp_head';
 		add_action( $scc_styles_loc, array( $this, 'head_styles' ) );
 	}
 
 
-	/** 
+	/**
 	 * create customizer settings
 	 */
 	public function settings( $wp_customize ) {
@@ -61,116 +61,116 @@ class SCC_Front_Display_Customizer {
 		if ( ! $this->sccc_active ) {
 
 			$wp_customize->add_section( 'scc_front_display_customizer', array(
-		    	'title'       	=> 'SCC Front Display ' . __( 'Design', 'scc_front_display' ),
-				'description' 	=> sprintf( __( 'Use this section to style the course indicator output. For complete SCC output style options, you should install the %s plugin.', 'scc_front_display' ), '<a href="http://buildwpyourself.com/downloads/scc-customizer/" target="_blank">SCC Customizer</a>' ),
-				'priority'   	=> 100,
+				'title'        => 'SCC Front Display ' . __( 'Design', 'scc_front_display' ),
+				'description'  => sprintf( __( 'Use this section to style the course indicator output. For complete SCC output style options, you should install the %s plugin.', 'scc_front_display' ), '<a href="http://buildwpyourself.com/downloads/scc-customizer/" target="_blank">SCC Customizer</a>' ),
+				'priority'     => 100,
 			) );
 
 		}
 
 		// font size
 		$wp_customize->add_setting( 'sccfd_font_size', array(
-			'default'			=> '',
-			'sanitize_callback'	=> array( $this, 'scc_front_display_sanitize_integer' ),
-		) );		
+			'default'           => '',
+			'sanitize_callback' => array( $this, 'scc_front_display_sanitize_integer' ),
+		) );
 		$wp_customize->add_control( 'sccfd_font_size', array(
-		    'label' 	=> __( 'Front Display Font Size', 'scc_front_display' ),
-		    'section' 	=> $sccfd_customizer,
-			'settings' 	=> 'sccfd_font_size',
-			'priority'	=> 201
+			'label'     => __( 'Front Display Font Size', 'scc_front_display' ),
+			'section'   => $sccfd_customizer,
+			'settings'  => 'sccfd_font_size',
+			'priority'  => 201
 		) );
 
 		// font weight
 		$wp_customize->add_setting( 'sccfd_font_weight', array(
-			'default'			=> 0,
+			'default'   => 0,
 			'sanitize_callback'	=> array( $this, 'scc_front_display_sanitize_checkbox' ),
 		) );
 		$wp_customize->add_control( 'sccfd_font_weight', array(
-			'label'		=> __( 'Front Display Bold Font', 'scc_front_display' ),
-			'section'	=> $sccfd_customizer,
+			'label'     => __( 'Front Display Bold Font', 'scc_front_display' ),
+			'section'   => $sccfd_customizer,
 			'type'      => 'checkbox',
-			'priority'	=> 202
+			'priority'  => 202
 		) );
 
 		// font color
 		$colors[] = array(
-			'slug'		=>'sccfd_text_color', 
-			'label'		=> __( 'Front Display Text Color', 'scc_front_display' ),
-			'priority'	=> 203
+			'slug'      =>'sccfd_text_color',
+			'label'     => __( 'Front Display Text Color', 'scc_front_display' ),
+			'priority'  => 203
 		);
 
 		// background color
 		$colors[] = array(
-			'slug'		=>'sccfd_background', 
-			'label'		=> __( 'Front Display Background Color', 'scc_front_display' ),
-			'priority'	=> 204
+			'slug'      =>'sccfd_background',
+			'label'     => __( 'Front Display Background Color', 'scc_front_display' ),
+			'priority'  => 204
 		);
 
 		// padding top/bottom
 		$wp_customize->add_setting( 'sccfd_padding_top_bottom', array(
-			'default'			=> '',
-			'sanitize_callback'	=> array( $this, 'scc_front_display_sanitize_integer' ),
-		) );		
+			'default'           => '',
+			'sanitize_callback' => array( $this, 'scc_front_display_sanitize_integer' ),
+		) );
 		$wp_customize->add_control( 'sccfd_padding_top_bottom', array(
-		    'label' 	=> __( 'Front Display Padding (Top/Bottom)', 'scc_front_display' ),
-		    'section' 	=> $sccfd_customizer,
-			'settings' 	=> 'sccfd_padding_top_bottom',
-			'priority'	=> 205
+			'label'     => __( 'Front Display Padding (Top/Bottom)', 'scc_front_display' ),
+			'section'   => $sccfd_customizer,
+			'settings'  => 'sccfd_padding_top_bottom',
+			'priority'  => 205
 		) );
 
 		// padding left/right
 		$wp_customize->add_setting( 'sccfd_padding_left_right', array(
-			'default'			=> '',
-			'sanitize_callback'	=> array( $this, 'scc_front_display_sanitize_integer' ),
-		) );		
+			'default'           => '',
+			'sanitize_callback' => array( $this, 'scc_front_display_sanitize_integer' ),
+		) );
 		$wp_customize->add_control( 'sccfd_padding_left_right', array(
-		    'label' 	=> __( 'Front Display Padding (Left/Right)', 'scc_front_display' ),
-		    'section' 	=> $sccfd_customizer,
-			'settings' 	=> 'sccfd_padding_left_right',
-			'priority'	=> 206
+			'label'     => __( 'Front Display Padding (Left/Right)', 'scc_front_display' ),
+			'section'   => $sccfd_customizer,
+			'settings'  => 'sccfd_padding_left_right',
+			'priority'  => 206
 		) );
 
 		// border
 		$wp_customize->add_setting( 'sccfd_border', array(
-			'default'			=> '',
-			'sanitize_callback'	=> array( $this, 'scc_front_display_sanitize_integer' ),
-		) );	
+			'default'           => '',
+			'sanitize_callback' => array( $this, 'scc_front_display_sanitize_integer' ),
+		) );
 		$wp_customize->add_control( 'sccfd_border', array(
-		    'label' 	=> __( 'Front Display Border Width', 'scc_front_display' ),
-		    'section' 	=> $sccfd_customizer,
-			'settings' 	=> 'sccfd_border',
-			'priority'	=> 207
+			'label'     => __( 'Front Display Border Width', 'scc_front_display' ),
+			'section'   => $sccfd_customizer,
+			'settings'  => 'sccfd_border',
+			'priority'  => 207
 		) );
 
 		// border color
 		$colors[] = array(
-			'slug'		=>'sccfd_border_color', 
-			'label'		=> __( 'Front Display Border Color', 'scc_front_display' ),
-			'priority'	=> 208
+			'slug'      =>'sccfd_border_color',
+			'label'     => __( 'Front Display Border Color', 'scc_front_display' ),
+			'priority'  => 208
 		);
 
 		// border radius
 		$wp_customize->add_setting( 'sccfd_border_radius', array(
-			'default'			=> '',
-			'sanitize_callback'	=> array( $this, 'scc_front_display_sanitize_integer' ),
-		) );		
+			'default'           => '',
+			'sanitize_callback' => array( $this, 'scc_front_display_sanitize_integer' ),
+		) );
 		$wp_customize->add_control( 'sccfd_border_radius', array(
-		    'label' 	=> __( 'Front Display Border Radius', 'scc_front_display' ),
-		    'section' 	=> $sccfd_customizer,
-			'settings' 	=> 'sccfd_border_radius',
-			'priority'	=> 209
+			'label'     => __( 'Front Display Border Radius', 'scc_front_display' ),
+			'section'   => $sccfd_customizer,
+			'settings'  => 'sccfd_border_radius',
+			'priority'  => 209
 		) );
 
 		// margin bottom
 		$wp_customize->add_setting( 'sccfd_margin_bottom', array(
-			'default'			=> '',
-			'sanitize_callback'	=> array( $this, 'scc_front_display_sanitize_integer' ),
-		) );	
+			'default'           => '',
+			'sanitize_callback' => array( $this, 'scc_front_display_sanitize_integer' ),
+		) );
 		$wp_customize->add_control( 'sccfd_margin_bottom', array(
-		    'label' 	=> __( 'Front Display Bottom Margin', 'scc_front_display' ),
-		    'section' 	=> $sccfd_customizer,
-			'settings' 	=> 'sccfd_margin_bottom',
-			'priority'	=> 210
+			'label'     => __( 'Front Display Bottom Margin', 'scc_front_display' ),
+			'section'   => $sccfd_customizer,
+			'settings'  => 'sccfd_margin_bottom',
+			'priority'  => 210
 		) );
 
 		// build settings from $colors array
@@ -178,31 +178,30 @@ class SCC_Front_Display_Customizer {
 
 			// customizer settings
 			$wp_customize->add_setting( $color['slug'], array(
-				'default'		=> $color['default'],
-				'type'			=> 'option', 
-				'capability'	=> 'edit_theme_options'
+				'type'        => 'option',
+				'capability'  => 'edit_theme_options'
 			) );
 
 			// customizer controls
 			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, $color['slug'], array(
-				'label'		=> $color['label'], 
-				'section'	=> $sccfd_customizer,
-				'settings'	=> $color['slug'],
-				'priority'	=> $color['priority']
+				'label'     => $color['label'],
+				'section'   => $sccfd_customizer,
+				'settings'  => $color['slug'],
+				'priority'  => $color['priority']
 			) ) );
 		}
 	}
 
 
-	/** 
+	/**
 	 * sanitize checkbox options
 	 */
 	function scc_front_display_sanitize_checkbox( $input ) {
-	    if ( 1 == $input ) :
-	        return 1;
-	    else :
-	        return 0;
-	    endif;
+		if ( 1 == $input ) :
+			return 1;
+		else :
+			return 0;
+		endif;
 	}
 
 
@@ -213,7 +212,7 @@ class SCC_Front_Display_Customizer {
 		if ( '' == $input ) :
 			return '';
 		endif;
-		
+
 		return absint( $input );
 	}
 
@@ -224,12 +223,12 @@ class SCC_Front_Display_Customizer {
 	public function scc_front_display_sanitize_hex_color( $color ) {
 		if ( '' === $color ) :
 			return '';
-	    endif;
+		endif;
 
 		// 3 or 6 hex digits, or the empty string.
 		if ( preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) :
 			return $color;
-	    endif;
+		endif;
 
 		return null;
 	}
@@ -265,16 +264,16 @@ class SCC_Front_Display_Customizer {
 	 * hook. If not, create a new one <style> section through wp_head().
 	 */
 	public function head_styles() {
-		$sccfd_font_size			= get_theme_mod( 'sccfd_font_size' );
-		$sccfd_font_weight			= get_theme_mod( 'sccfd_font_weight' );
-		$sccfd_background			= get_option( 'sccfd_background' );
-		$sccfd_border				= get_theme_mod( 'sccfd_border' );
-		$sccfd_border_color			= get_option( 'sccfd_border_color' );
-		$sccfd_border_radius		= get_theme_mod( 'sccfd_border_radius' );
-		$sccfd_padding_top_bottom	= get_theme_mod( 'sccfd_padding_top_bottom' );
-		$sccfd_padding_left_right	= get_theme_mod( 'sccfd_padding_left_right' );
-		$sccfd_text_color			= get_option( 'sccfd_text_color' );
-		$sccfd_margin_bottom		= get_theme_mod( 'sccfd_margin_bottom' );
+		$sccfd_font_size            = get_theme_mod( 'sccfd_font_size' );
+		$sccfd_font_weight          = get_theme_mod( 'sccfd_font_weight' );
+		$sccfd_background           = get_option( 'sccfd_background' );
+		$sccfd_border               = get_theme_mod( 'sccfd_border' );
+		$sccfd_border_color         = get_option( 'sccfd_border_color' );
+		$sccfd_border_radius        = get_theme_mod( 'sccfd_border_radius' );
+		$sccfd_padding_top_bottom   = get_theme_mod( 'sccfd_padding_top_bottom' );
+		$sccfd_padding_left_right   = get_theme_mod( 'sccfd_padding_left_right' );
+		$sccfd_text_color           = get_option( 'sccfd_text_color' );
+		$sccfd_margin_bottom        = get_theme_mod( 'sccfd_margin_bottom' );
 
 		echo ! $this->sccc_active ? '<style type="text/css">' : ''; // do we need a new <style> tag?
 			echo '.scc-front-display{';
@@ -320,7 +319,7 @@ class SCC_Front_Display_Customizer {
 
 				// course indicator text color
 				if ( $sccfd_text_color ) :
-					echo 'color:' . $this->scc_front_display_sanitize_hex_color( $sccfd_text_color ) . ';';		
+					echo 'color:' . $this->scc_front_display_sanitize_hex_color( $sccfd_text_color ) . ';';
 				endif;
 
 				// margin bottom
@@ -328,7 +327,7 @@ class SCC_Front_Display_Customizer {
 					echo 'margin-bottom:' . intval( $sccfd_margin_bottom ) . 'px;';
 				endif;
 
-			echo '}';			
+			echo '}';
 		echo ! $this->sccc_active ? '</style>' : '';
 	}
 }
