@@ -3,8 +3,8 @@ Contributors: sdavis2702
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=52HQDSEUA542S
 Tags: customizer, series, course, lesson, taxonomy, sdavis2702
 Requires at least: 3.8
-Tested up to: 4.1
-Stable tag: 1.0.3
+Tested up to: 4.6
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,11 +32,11 @@ Yes. You can filter the text that displays both before and after the course name
 
 = Does this plugin add customizer options for the Front Display output? =
 
-Yes. 
+Yes.
 
 = What if I already have Simple Course Creator Customizer installed? =
 
-The Front Display customizer options will be merged with SCC Customizer. 
+The Front Display customizer options will be merged with SCC Customizer.
 
 == Screenshots ==
 
@@ -44,6 +44,9 @@ The Front Display customizer options will be merged with SCC Customizer.
 2. front display output
 
 == Changelog ==
+
+= 1.0.4 =
+* Fixed: PHP notices in Customizer
 
 = 1.0.3 =
 * improved: removed white space
