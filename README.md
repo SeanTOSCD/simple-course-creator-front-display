@@ -3,7 +3,8 @@ Simple Course Creator Front Display
 
 View it on WordPress: (http://wordpress.org/plugins/simple-course-creator-front-display/)
 
-This is an add-on plugin for use with the [Simple Course Creator](https://github.com/sdavis2702/simple-course-creator) plugin.
+This is an add-on plugin for use with the [Simple Course Creator](https://github.com/sdavismedia/simple-course-creator
+) plugin.
 
 Simple Course Creator is designed to easily link posts together in a series and output that series list in the content of each included post.
 
@@ -13,10 +14,6 @@ The Simple Course Creator Front Display add-on outputs that course name on each 
 ---
 
 SCC Front Display requires no settings. Once you install it, it works. However, it does have built-in customization options in the theme customizer.
-
-![Simple Course Creator Front Display](http://buildwpyourself.com/wp-content/uploads/edd/2014/04/sccfd-customizer.png)
-
-If you have [Simple Course Creator Customizer](http://buildwpyourself.com/downloads/scc-customizer/) installed, the options will merge seamlessly into one customizer section.
 
 ### Theme Overrides
 ---
@@ -62,6 +59,7 @@ This plugin, like WordPress, is licensed under the GPL. Do what you want with it
 ### Developer
 ---
 
-I'm Sean. I created the [Volatyl Framework](http://volatylthemes.com) for WordPress. I like to do most of my WordPress stuff on [Build WordPress Yourself](http://buildwpyourself.com/). I also write stuff on my [personal site](http://seandavis.co) and [SDavis Media](http://sdavismedia.com). Follow me on the [Twitter](http://sdvs.me/twitter) machine.
+I'm Sean. I've created a few little pieces of software. I'm not that easy to find online. That's by design.
 
-Meanwhile, tell me... is this plugin useful to you? If so, consider buying me a box of "Tazo: Awake - English Breakfast Black Tea." I need ALL the energiez. Thanks. [Donate Black Tea](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=52HQDSEUA542S)
+Is this plugin useful to you? If so, please consider buying me a bag of coffee beans. Thank you much. [Donate via
+ PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=52HQDSEUA542S)

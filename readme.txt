@@ -3,8 +3,8 @@ Contributors: sdavis2702
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=52HQDSEUA542S
 Tags: customizer, series, course, lesson, taxonomy, sdavis2702
 Requires at least: 3.8
-Tested up to: 4.6
-Stable tag: 1.0.4
+Tested up to: 5.3
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,13 +22,13 @@ By default, the only way to know that a post is part of a Simple Course Creator 
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. [Optional] Customizer options under the 'Appearance -> Customizer' menu
 
-Follow Simple Course Creator Post Meta on [Github](https://github.com/sdavis2702/simple-course-creator-front-display)
+Follow Simple Course Creator Post Meta on [Github](https://github.com/sdavismedia/simple-course-creator-front-display)
 
 == Frequently Asked Questions ==
 
 = Can I customize the output? =
 
-Yes. You can filter the text that displays both before and after the course name.
+Yes. You can filter the text that displays both before and after the course name. [See documentation](https://github.com/SDavisMedia/simple-course-creator-front-display#theme-overrides).
 
 = Does this plugin add customizer options for the Front Display output? =
 
@@ -40,10 +40,13 @@ The Front Display customizer options will be merged with SCC Customizer.
 
 == Screenshots ==
 
-1. customizer settings
-2. front display output
+1. customizer settings and output
 
 == Changelog ==
+
+= 1.0.5 =
+* Added: allow front display message to link directly to Course archive
+* Improved: compatibility with latest WordPress versions and Simple Course Creator 1.0.7+
 
 = 1.0.4 =
 * Fixed: PHP notices in Customizer

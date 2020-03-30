@@ -31,15 +31,12 @@ class SCCFD_Display_Course {
 		$course_trailing_text = apply_filters( 'course_trailing_text', 'course.' );
 
 		// what's the name of the course?
-		$course_info = get_the_term_list( $post->ID, 'course', $course_leading_text . ' ', '', ' ' . $course_trailing_text );
-
-		// don't link to the course's archive page... just display its name
-		$course_info = strip_tags( $course_info );
+		$course_info = get_the_term_list( $post->ID, 'course', $course_leading_text . ' ', ', ', ' ' . $course_trailing_text );
 
 		// only display the course output if it exists and it's the
 		// blog home, archive, or search results
 		if ( is_home() || is_archive() || is_search() ) :
-			echo '' != $course_info ? '<span class="scc-front-display">' . $course_info . '</span>' : '';
+			echo '' != $course_info ? '<p class="scc-front-display">' . $course_info . '</p>' : '';
 		endif;
 
 		return $content;

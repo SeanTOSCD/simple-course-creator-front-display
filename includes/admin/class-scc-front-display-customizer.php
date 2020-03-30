@@ -62,7 +62,7 @@ class SCC_Front_Display_Customizer {
 
 			$wp_customize->add_section( 'scc_front_display_customizer', array(
 				'title'        => 'SCC Front Display ' . __( 'Design', 'scc_front_display' ),
-				'description'  => sprintf( __( 'Use this section to style the course indicator output. For complete SCC output style options, you should install the %s plugin.', 'scc_front_display' ), '<a href="http://buildwpyourself.com/downloads/scc-customizer/" target="_blank">SCC Customizer</a>' ),
+				'description'  => sprintf( __( 'Use this section to style the course indicator output. For complete SCC output style options, you should install the %s plugin.', 'scc_front_display' ), '<a href="https://wordpress.org/plugins/simple-course-creator-customizer/" target="_blank">SCC Customizer</a>' ),
 				'priority'     => 100,
 			) );
 
@@ -251,7 +251,7 @@ class SCC_Front_Display_Customizer {
 			#customize-control-sccfd_padding_top_bottom label:after,
 			#customize-control-sccfd_padding_left_right label:after,
 			#customize-control-sccfd_font_size label:after,
-			#customize-control-sccfd_margin_bottom label:after { content: "px"; }
+			#customize-control-sccfd_margin_bottom label:after { content: " - px"; }
 		</style>
 	<?php }
 
@@ -277,8 +277,6 @@ class SCC_Front_Display_Customizer {
 
 		echo ! $this->sccc_active ? '<style type="text/css">' : ''; // do we need a new <style> tag?
 			echo '.scc-front-display{';
-
-				echo 'display: inline-block;';
 
 				// font size
 				if ( $sccfd_font_size ) :
