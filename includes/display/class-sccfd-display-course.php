@@ -36,7 +36,7 @@ class SCCFD_Display_Course {
 		// only display the course output if it exists and it's the
 		// blog home, archive, or search results
 		if ( $course_info && ( is_home() || is_archive() || is_search() ) ) :
-			$content = '<p class="scc-front-display">' . $course_info . '</p>';
+			$content = '<p class="scc-front-display">' . $course_info . '</p> ' . $content;
 		endif;
 
 		return $content;
